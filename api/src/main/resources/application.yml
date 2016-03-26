@@ -1,0 +1,12 @@
+server:  
+  port: 8081
+
+spring:  
+  application:
+    name: api-entrypoint
+eureka:  
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:8761/eureka/
+  instance:
+    preferIpAddress: true

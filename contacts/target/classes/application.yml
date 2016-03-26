@@ -1,0 +1,33 @@
+spring:
+  profiles.active: default
+
+---
+server:
+  compression.enabled: true
+  port: 0
+
+spring:
+  profiles: default
+  application:  
+    name: contacts-service
+
+params:
+  datasource:
+    driverClassName: org.postgresql.Driver
+    jdbcUrl: jdbc:postgresql://127.0.0.1:5432/contacts
+    username: postgres
+    password: postgres
+    maximumPoolSize: 2
+    poolName: hikari_pool
+
+spring.jpa:
+  show-sql: true
+  hibernate:
+    ddl-auto: update
+    
+eureka:  
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:8761/eureka/
+  instance:
+    preferIpAddress: true
