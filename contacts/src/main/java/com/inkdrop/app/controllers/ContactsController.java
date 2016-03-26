@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.inkdrop.app.models.Contact;
 import com.inkdrop.app.repositories.ContactsRepository;
 
 @RestController
@@ -19,9 +21,15 @@ public class ContactsController {
 	ContactsRepository repository;
 
 	@RequestMapping(method=RequestMethod.POST, path="/create")
-	public ResponseEntity<String> saveUser(@RequestBody String user){
-		// TODO
-		System.err.println("Calling: "+Thread.currentThread().getId());
-		return new ResponseEntity<String>("{ 'created': true }", HttpStatus.CREATED);
+	public ResponseEntity<String> saveUser(@RequestBody String user) throws Exception {
+		try{
+		ObjectMapper objectMapper = new ObjectMapper();
+		Contact contact = objectMapper.readValue(user, Contact.class);
+		contact = repository.save(contact);
+		return new ResponseEntity<String>(objectMapper.writeValueAsString(contact), HttpStatus.CREATED);
+		} catch(Exception e){
+			e.printStackTrace();
+			throw e;
+		}
 	}
 }

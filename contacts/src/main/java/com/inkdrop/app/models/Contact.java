@@ -8,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="contacts")
 public class Contact implements Serializable {
@@ -15,6 +17,7 @@ public class Contact implements Serializable {
 	private static final long serialVersionUID = 7998626098964616778L;
 
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+	@JsonIgnore
 	private Long id;
 	private String name;
 	private String phone;
