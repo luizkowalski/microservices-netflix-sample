@@ -30,9 +30,6 @@ public class ApiEntryPointService {
 		HttpEntity<String> entity = new HttpEntity<String>(userJson, headers);
 		System.err.println(entity);
 		ResponseEntity<String> resp = rest.postForEntity(getUrl()+ "/create", entity, String.class);
-		System.err.println(resp.getBody());
-		System.err.println("Passei");
-		System.err.println(resp.getStatusCode());
 		return new ResponseEntity<String>(resp.getBody(), resp.getStatusCode());
 	}
 
