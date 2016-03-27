@@ -8,17 +8,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.inkdrop.services.ApiEntryPointService;
+import com.inkdrop.components.ContactsComponent;
 
 @RestController
 @EnableAutoConfiguration
 public class ContactsController {
 
 	@Autowired
-	ApiEntryPointService service;
+	ContactsComponent service;
 
-	@RequestMapping(method=RequestMethod.POST, path="/create")
+	@RequestMapping(method=RequestMethod.POST, path="/contacts/new")
 	public ResponseEntity<String> saveUser(@RequestBody String user){
 		return service.saveUser(user);
+	}
+
+	@RequestMapping(method=RequestMethod.GET, path="/contacts")
+	public ResponseEntity<String> getUsers(){
+		return service.getUsers();
 	}
 }

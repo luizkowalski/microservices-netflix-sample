@@ -20,7 +20,7 @@ public class ContactsController {
 	@Autowired
 	ContactsRepository repository;
 
-	@RequestMapping(method=RequestMethod.POST, path="/create")
+	@RequestMapping(method=RequestMethod.POST, path="/contacts/new")
 	public ResponseEntity<String> saveUser(@RequestBody String user) throws Exception {
 		try{
 		ObjectMapper objectMapper = new ObjectMapper();
@@ -31,5 +31,15 @@ public class ContactsController {
 			e.printStackTrace();
 			throw e;
 		}
+	}
+
+	@RequestMapping(method=RequestMethod.GET, path="/contacts")
+	public ResponseEntity<String> getUsers() throws Exception {
+		String users = mapper().writeValueAsString(repository.findAll());
+		return new ResponseEntity<String>(users, HttpStatus.OK);
+	}
+
+	private ObjectMapper mapper(){
+		return new ObjectMapper();
 	}
 }

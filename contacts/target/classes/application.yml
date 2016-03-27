@@ -18,16 +18,20 @@ params:
     username: postgres
     password: postgres
     maximumPoolSize: 2
-    poolName: hikari_pool
+    poolName: hikari_contacts_pool
 
 spring.jpa:
   show-sql: true
   hibernate:
     ddl-auto: update
-    
+
 eureka:  
   client:
+    registryFetchIntervalSeconds: 5
     serviceUrl:
       defaultZone: http://eureka:admin@127.0.0.1:8761/eureka/
   instance:
     preferIpAddress: true
+    leaseRenewalIntervalInSeconds: 10
+    metadataMap: 
+      instanceId: ${spring.application.name}:${random.int}

@@ -2,7 +2,7 @@ security:
   basic:
     enabled: true
   user:
-      name: eureka # login username
+      name: eureka
       password: admin
 
 server:  
