@@ -1,5 +1,7 @@
 package com.inkdrop.components;
 
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
 import org.springframework.http.HttpEntity;
@@ -16,14 +18,14 @@ public class ContactsComponent extends BasicComponent {
     private LoadBalancerClient loadBalancer;
 
 	@HystrixCommand(fallbackMethod="saveUserFallback")
-	public ResponseEntity<String> saveUser(String userJson){
-		HttpEntity<String> entity = createEntity(userJson);
+	public ResponseEntity<String> saveContact(String contact){
+		HttpEntity<String> entity = createEntity(contact);
 		ResponseEntity<String> resp = post(getUrl(), "/contacts/new", entity);
 		return new ResponseEntity<String>(resp.getBody(), resp.getStatusCode());
 	}
 
 	@HystrixCommand(fallbackMethod="getUsersFallback")
-	public ResponseEntity<String> getUsers(){
+	public ResponseEntity<String> getContacts() throws IOException{
 		ResponseEntity<String> resp = get(getUrl(), "/contacts");
 		return new ResponseEntity<String>(resp.getBody(), resp.getStatusCode());
 	}

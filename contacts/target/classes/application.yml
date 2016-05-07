@@ -35,3 +35,39 @@ eureka:
     leaseRenewalIntervalInSeconds: 10
     metadataMap: 
       instanceId: ${spring.application.name}:${random.int}
+      
+---
+
+server:
+  compression.enabled: true
+  port: 0
+
+spring:
+  profiles: docker
+  application:  
+    name: contacts-service
+
+params:
+  datasource:
+    driverClassName: org.postgresql.Driver
+    jdbcUrl: jdbc:postgresql://postgres:5432/contacts
+    username: postgres
+    password: postgres
+    maximumPoolSize: 2
+    poolName: hikari_contacts_pool
+
+spring.jpa:
+  show-sql: true
+  hibernate:
+    ddl-auto: update
+
+eureka:  
+  client:
+    registryFetchIntervalSeconds: 5
+    serviceUrl:
+      defaultZone: http://eureka:admin@discovery:8761/eureka/
+  instance:
+    preferIpAddress: true
+    leaseRenewalIntervalInSeconds: 10
+    metadataMap: 
+      instanceId: ${spring.application.name}:${random.int}

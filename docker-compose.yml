@@ -1,0 +1,34 @@
+postgres:
+  image: postgres
+  ports:
+    - "5432:5432"
+  environment:
+    POSTGRES_PASSWORD: postgres
+    POSTGRES_USER: postgres
+    POSTGRES_DB: contacts
+
+rabbitmq:
+  image: rabbitmq
+  ports:
+    - "5672:5672"
+    - "15672:15672"
+
+discovery:
+  build: eureka-server/.
+  ports:
+    - "8761:8761"
+
+contacts-api:
+  build: contacts/.
+  links:
+    - postgres
+    - discovery
+
+api:
+  build: api/.
+  ports:
+    - "8080:8080"
+  links:
+    - discovery
+    - contacts-api
+    - rabbitmq

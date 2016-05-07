@@ -3,10 +3,23 @@ server:
 
 spring:  
   application:
-    name: api-entrypoint
+    name: api-gateway
 eureka:  
   client:
     serviceUrl:
       defaultZone: http://eureka:admin@127.0.0.1:8761/eureka/
+  instance:
+    preferIpAddress: true
+    
+---
+
+spring:  
+  profiles: docker
+  application:
+    name: api-gateway
+eureka:  
+  client:
+    serviceUrl:
+      defaultZone: http://eureka:admin@discovery:8761/eureka/
   instance:
     preferIpAddress: true

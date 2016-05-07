@@ -1,0 +1,4 @@
+com/inkdrop/app/repositories/ContactsRepository.class
+com/inkdrop/config/DataSourceConfiguration.class
+com/inkdrop/ContactsApplication.class
+com/inkdrop/app/controllers/ContactsController.class
