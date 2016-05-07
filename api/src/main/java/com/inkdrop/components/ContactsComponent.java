@@ -15,7 +15,7 @@ import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 public class ContactsComponent extends BasicComponent {
 
 	 @Autowired
-    private LoadBalancerClient loadBalancer;
+	 private LoadBalancerClient loadBalancer;
 
 	@HystrixCommand(fallbackMethod="saveUserFallback")
 	public ResponseEntity<String> saveContact(String contact){

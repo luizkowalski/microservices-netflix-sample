@@ -69,6 +69,10 @@ local.properties
 # Code Recommenders
 .recommenders/
 
+contacts/target/
+api/target/
+eureka-server/target
+
 ### Maven ###
 target/
 pom.xml.tag

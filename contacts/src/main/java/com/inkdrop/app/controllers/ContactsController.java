@@ -23,10 +23,10 @@ public class ContactsController {
 	@RequestMapping(method=RequestMethod.POST, path="/contacts/new")
 	public ResponseEntity<String> saveUser(@RequestBody String user) throws Exception {
 		try{
-		ObjectMapper objectMapper = new ObjectMapper();
-		Contact contact = objectMapper.readValue(user, Contact.class);
-		contact = repository.save(contact);
-		return new ResponseEntity<String>(objectMapper.writeValueAsString(contact), HttpStatus.CREATED);
+			ObjectMapper objectMapper = new ObjectMapper();
+			Contact contact = objectMapper.readValue(user, Contact.class);
+			contact = repository.save(contact);
+			return new ResponseEntity<String>(objectMapper.writeValueAsString(contact), HttpStatus.CREATED);
 		} catch(Exception e){
 			e.printStackTrace();
 			throw e;
