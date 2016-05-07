@@ -1,31 +1,26 @@
 spring:
   profiles.active: default
+  application:
+    name: contacts-service
 
----
 server:
   compression.enabled: true
   port: 0
-
-spring:
-  profiles: default
-  application:  
-    name: contacts-service
-
-params:
-  datasource:
-    driverClassName: org.postgresql.Driver
-    jdbcUrl: jdbc:postgresql://127.0.0.1:5432/contacts
-    username: postgres
-    password: postgres
-    maximumPoolSize: 2
-    poolName: hikari_contacts_pool
 
 spring.jpa:
   show-sql: true
   hibernate:
     ddl-auto: update
 
-eureka:  
+params:
+  datasource:
+    driverClassName: org.postgresql.Driver
+    username: postgres
+    password: postgres
+    maximumPoolSize: 2
+    poolName: hikari_contacts_pool
+
+eureka:
   client:
     registryFetchIntervalSeconds: 5
     serviceUrl:
@@ -33,41 +28,32 @@ eureka:
   instance:
     preferIpAddress: true
     leaseRenewalIntervalInSeconds: 10
-    metadataMap: 
+    metadataMap:
       instanceId: ${spring.application.name}:${random.int}
-      
+
 ---
-
-server:
-  compression.enabled: true
-  port: 0
-
 spring:
-  profiles: docker
-  application:  
-    name: contacts-service
+  profiles: default
 
 params:
   datasource:
-    driverClassName: org.postgresql.Driver
-    jdbcUrl: jdbc:postgresql://postgres:5432/contacts
-    username: postgres
-    password: postgres
-    maximumPoolSize: 2
-    poolName: hikari_contacts_pool
+    jdbcUrl: jdbc:postgresql://127.0.0.1:5432/contacts
 
-spring.jpa:
-  show-sql: true
-  hibernate:
-    ddl-auto: update
-
-eureka:  
+eureka:
   client:
-    registryFetchIntervalSeconds: 5
+    serviceUrl:
+      defaultZone: http://eureka:admin@127.0.0.1:8761/eureka/
+
+---
+
+spring:
+  profiles: docker
+
+params:
+  datasource:
+    jdbcUrl: jdbc:postgresql://postgres:5432/contacts
+
+eureka:
+  client:
     serviceUrl:
       defaultZone: http://eureka:admin@discovery:8761/eureka/
-  instance:
-    preferIpAddress: true
-    leaseRenewalIntervalInSeconds: 10
-    metadataMap: 
-      instanceId: ${spring.application.name}:${random.int}
