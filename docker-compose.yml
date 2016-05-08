@@ -1,5 +1,5 @@
 postgres:
-  image: postgres
+  image: postgres:9.5
   ports:
     - "5432:5432"
   environment:
@@ -9,19 +9,20 @@ postgres:
   volumes:
     - /var/lib/postgresql
 
-
 rabbitmq:
   image: rabbitmq
   ports:
     - "5672:5672"
     - "15672:15672"
+  volumes:
+    - /var/lib/rabbitmq/
 
 discovery:
   build: eureka-server/.
   ports:
     - "8761:8761"
 
-contacts-api:
+contacts:
   build: contacts/.
   links:
     - postgres
@@ -33,5 +34,5 @@ api:
     - "8080:8080"
   links:
     - discovery
-    - contacts-api
+    - contacts
     - rabbitmq
