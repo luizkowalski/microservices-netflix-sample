@@ -1,38 +1,45 @@
-postgres:
-  image: postgres:9.5
-  ports:
-    - "5432:5432"
-  environment:
-    POSTGRES_PASSWORD: postgres
-    POSTGRES_USER: postgres
-    POSTGRES_DB: contacts
-  volumes:
-    - /var/lib/postgresql
+version: '2'
+services:
+  postgres:
+    image: postgres:9.5
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: contacts
+    volumes:
+      - /var/lib/postgresql
 
-rabbitmq:
-  image: rabbitmq:3-management
-  ports:
-    - "5672:5672"
-    - "15672:15672"
-  volumes:
-    - /var/lib/rabbitmq/
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes:
+      - /var/lib/rabbitmq/
 
-discovery:
-  build: eureka-server/.
-  ports:
-    - "8761:8761"
+  discovery:
+    build: eureka-server/.
+    ports:
+      - "8761:8761"
 
-contacts:
-  build: contacts/.
-  links:
-    - postgres
-    - discovery
+  contacts:
+    build: contacts/.
+    links:
+      - postgres
+      - discovery
+    depends_on:
+      - postgres
+      - discovery
 
-api:
-  build: api/.
-  ports:
-    - "8080:8080"
-  links:
-    - discovery
-    - contacts
-    - rabbitmq
+  api:
+    build: api/.
+    ports:
+      - "8080:8080"
+    links:
+      - discovery
+      - contacts
+      - rabbitmq
+    depends_on:
+      - contacts
