@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.inkdrop.app.models.Contact;
 import com.inkdrop.app.repositories.ContactsRepository;
-import com.inkdrop.models.Contact;
 
 @RestController
 @EnableAutoConfiguration

@@ -1,4 +1,4 @@
-package com.inkdrop.models;
+package com.inkdrop.app.models;
 
 import java.io.Serializable;
 

@@ -7,9 +7,11 @@ security:
 
 server:  
   port: 8761
+
 eureka:  
   numberRegistrySyncRetries: 1
   instance:
+    preferIpAddress: true
     hostname: localhost
   client:
     registerWithEureka: false
