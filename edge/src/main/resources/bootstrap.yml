@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: edge-server
+    
+server.port: 8080
