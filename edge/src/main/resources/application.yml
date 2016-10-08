@@ -1,17 +1,27 @@
-zuul: 
+zuul:
   routes:
-    contacts-service: 
+    contacts-service:
       path: /contacts/**
       stripPrefix: true
       serviceId: contacts-service
-      
-ribbon: 
+
+ribbon:
   eureka:
     enabled: true
 
-eureka:  
+eureka:
   client:
     serviceUrl:
       defaultZone: http://eureka:admin@127.0.0.1:8761/eureka/
   instance:
     preferIpAddress: true
+
+---
+
+spring:
+  profiles: docker
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://eureka:admin@discovery:8761/eureka/

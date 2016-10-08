@@ -31,13 +31,22 @@ services:
       - postgres
       - discovery
 
-  api:
-    build: api/.
+  # api:
+  #   build: api/.
+  #   ports:
+  #     - "8080:8080"
+  #   links:
+  #     - discovery
+  #     - contacts
+  #     - rabbitmq
+  #   depends_on:
+  #     - contacts
+
+  edge:
+    build: edge/.
     ports:
       - "8080:8080"
     links:
       - discovery
-      - contacts
-      - rabbitmq
     depends_on:
-      - contacts
+      - discovery
