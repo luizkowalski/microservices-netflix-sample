@@ -9,13 +9,13 @@ services:
     volumes:
       - /var/lib/postgresql
 
-  rabbitmq:
-    image: rabbitmq:3-management
-    ports:
-      - "5672:5672"
-      - "15672:15672"
-    volumes:
-      - /var/lib/rabbitmq/
+  # rabbitmq:
+  #   image: rabbitmq:3-management
+  #   ports:
+  #     - "5672:5672"
+  #     - "15672:15672"
+  #   volumes:
+  #     - /var/lib/rabbitmq/
 
   discovery:
     build: eureka-server/.
@@ -50,3 +50,12 @@ services:
       - discovery
     depends_on:
       - discovery
+
+  hystrix-dashboard:
+    build: hystrix/.
+    ports:
+      - "8090:8090"
+    links:
+      - edge
+    depends_on:
+      - edge

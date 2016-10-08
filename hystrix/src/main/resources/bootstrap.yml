@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: hystrix-dashboard
+  cloud:
+    config:
+      failFast: true
+
+server.port: 8090
