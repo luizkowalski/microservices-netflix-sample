@@ -31,31 +31,27 @@ services:
       - postgres
       - discovery
 
-  # api:
-  #   build: api/.
-  #   ports:
-  #     - "8080:8080"
-  #   links:
-  #     - discovery
-  #     - contacts
-  #     - rabbitmq
-  #   depends_on:
-  #     - contacts
-
-  edge:
-    build: edge/.
+  api:
+    build: api/.
     ports:
       - "8080:8080"
     links:
       - discovery
-    depends_on:
-      - discovery
 
-  hystrix-dashboard:
+  # edge:
+  #   build: edge/.
+  #   ports:
+  #     - "8080:8080"
+  #   links:
+  #     - discovery
+  #   depends_on:
+  #     - discovery
+
+  hystrix:
     build: hystrix/.
     ports:
       - "8090:8090"
-    links:
-      - edge
-    depends_on:
-      - edge
+    # links:
+    #   - edge
+    # depends_on:
+    #   - edge

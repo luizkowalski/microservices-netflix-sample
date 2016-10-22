@@ -29,6 +29,7 @@ eureka:
     metadataMap:
       instanceId: ${spring.application.name}:${random.int}
 
+
 ---
 spring:
   profiles: default
