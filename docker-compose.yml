@@ -51,7 +51,5 @@ services:
     build: hystrix/.
     ports:
       - "8090:8090"
-    # links:
-    #   - edge
-    # depends_on:
-    #   - edge
+    links:
+      - discovery

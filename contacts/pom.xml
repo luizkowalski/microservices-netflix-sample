@@ -16,7 +16,7 @@
   <packaging>jar</packaging>
 
   <name>contacts</name>
-  <description>Contacts microservice</description>
+  <description>Contacts Microservice</description>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
