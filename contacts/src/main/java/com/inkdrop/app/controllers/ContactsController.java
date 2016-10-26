@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.inkdrop.app.components.ContactsComponent;
 import com.inkdrop.app.models.Contact;
 import com.inkdrop.app.repositories.ContactsRepository;
 
@@ -19,6 +20,9 @@ public class ContactsController {
 
 	@Autowired
 	ContactsRepository repository;
+
+	@Autowired
+	ContactsComponent component;
 
 	@RequestMapping(method=RequestMethod.POST, path="/contacts/new")
 	public ResponseEntity<String> saveUser(@RequestBody String user) throws Exception {
@@ -35,8 +39,12 @@ public class ContactsController {
 
 	@RequestMapping(method=RequestMethod.GET, path="/contacts")
 	public ResponseEntity<String> getUsers() throws Exception {
-		String users = mapper().writeValueAsString(repository.findAll());
+		String users = mapper().writeValueAsString(component.getContacts());
 		return new ResponseEntity<String>(users, HttpStatus.OK);
+	}
+
+	public ResponseEntity<String> getUsersFallback(){
+		return new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 
 	private ObjectMapper mapper(){

@@ -29,7 +29,6 @@ eureka:
     metadataMap:
       instanceId: ${spring.application.name}:${random.int}
 
-
 ---
 spring:
   profiles: default
@@ -38,13 +37,7 @@ params:
   datasource:
     jdbcUrl: jdbc:postgresql://127.0.0.1:5432/contacts
 
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://eureka:admin@127.0.0.1:8761/eureka/
-
 ---
-
 spring:
   profiles: docker
 

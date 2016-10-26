@@ -16,8 +16,8 @@ server.port: 8090
 
 turbine:
   aggregator:
-    clusterConfig: API-GATEWAY
-  appConfig: API-GATEWAY
+    clusterConfig: CONTACTS-SERVICE
+  appConfig: CONTACTS-SERVICE
 
 ---
 

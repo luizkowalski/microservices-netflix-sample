@@ -1,23 +1,23 @@
-server:  
+server:
   port: 8080
 
-spring:  
+spring:
   application:
     name: api-gateway
-eureka:  
+eureka:
   client:
     serviceUrl:
       defaultZone: http://eureka:admin@127.0.0.1:8761/eureka/
   instance:
     preferIpAddress: true
-    
+
 ---
 
-spring:  
+spring:
   profiles: docker
   application:
     name: api-gateway
-eureka:  
+eureka:
   client:
     serviceUrl:
       defaultZone: http://eureka:admin@discovery:8761/eureka/
