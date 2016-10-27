@@ -1,0 +1,11 @@
+postgresdb:
+  scale: 1
+eureka-server:
+  scale: 1
+edge-server:
+  scale: 1
+hystrix:
+  scale: 1
+contacts:
+  scale: 1
+
