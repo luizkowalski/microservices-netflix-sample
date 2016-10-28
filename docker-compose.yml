@@ -1,47 +1,38 @@
-version: '2'
-services:
-  postgres:
-    image: postgres:9.5
-    environment:
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_USER: postgres
-      POSTGRES_DB: contacts
-    volumes:
-      - /var/lib/postgresql
+postgres:
+  image: postgres:9.5
+  environment:
+    POSTGRES_PASSWORD: postgres
+    POSTGRES_USER: postgres
+    POSTGRES_DB: contacts
+  volumes:
+    - /var/lib/postgresql
 
-  discovery:
-    build: eureka-server/.
-    ports:
-      - "8761:8761"
+discovery:
+  build: eureka-server/.
+  ports:
+    - "8761:8761"
 
-  contacts:
-    build: contacts/.
-    links:
-      - postgres
-      - discovery
-    depends_on:
-      - postgres
-      - discovery
+contacts:
+  build: contacts/.
+  links:
+    - postgres
+    - discovery
+  depends_on:
+    - postgres
+    - discovery
 
-  # api:
-  #   build: api/.
-  #   ports:
-  #     - "8080:8080"
-  #   links:
-  #     - discovery
+edge:
+  build: edge/.
+  ports:
+    - "8080:8080"
+  links:
+    - discovery
+  depends_on:
+    - discovery
 
-  edge:
-    build: edge/.
-    ports:
-      - "8080:8080"
-    links:
-      - discovery
-    depends_on:
-      - discovery
-
-  hystrix:
-    build: hystrix/.
-    ports:
-      - "8090:8090"
-    links:
-      - discovery
+hystrix:
+  build: hystrix/.
+  ports:
+    - "8090:8090"
+  links:
+    - discovery
