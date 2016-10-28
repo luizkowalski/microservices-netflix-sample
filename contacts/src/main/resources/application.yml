@@ -25,9 +25,10 @@ eureka:
     registryFetchIntervalSeconds: 5
     serviceUrl:
       defaultZone: http://eureka:admin@127.0.0.1:8761/eureka/
-  instance: 
+  instance:
     metadataMap:
       instanceId: ${spring.application.name}:${random.int}
+    preferIpAddress: false
 
 ---
 spring:
@@ -49,3 +50,6 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://eureka:admin@discovery:8761/eureka/
+  instance:
+    instanceId: ${spring.application.name}:${random.value}
+    preferIpAddress: false

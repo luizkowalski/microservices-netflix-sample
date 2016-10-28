@@ -5,13 +5,13 @@ security:
       name: eureka
       password: admin
 
-server:  
+server:
   port: 8761
 
-eureka:  
+eureka:
   numberRegistrySyncRetries: 1
   instance:
-    preferIpAddress: true
+    preferIpAddress: false
     hostname: localhost
   client:
     registerWithEureka: false
@@ -20,3 +20,21 @@ eureka:
       defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
   server:
     enable-self-preservation: true
+
+---
+
+spring:
+  profiles: docker
+
+eureka:
+  numberRegistrySyncRetries: 1
+  instance:
+    preferIpAddress: false
+    hostname: discovery
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+  server:
+    enable-self-preservation: false

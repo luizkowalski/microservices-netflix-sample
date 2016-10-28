@@ -6,54 +6,54 @@ postgresdb:
   labels:
     io.rancher.container.pull_image: always
     io.rancher.container.start_once: 'true'
-    io.rancher.scheduler.affinity:host_label: label=db
   tty: true
   image: postgres:9.5
   volumes:
   - /var/lib/postgres
   stdin_open: true
+  net: host
 eureka-server:
   ports:
   - 8761:8761/tcp
   labels:
     io.rancher.container.pull_image: always
     io.rancher.container.start_once: 'true'
-    io.rancher.scheduler.affinity:host_label: label=eureka
   tty: true
   image: luizkowalski/eureka-server
   stdin_open: true
+  net: host
 edge-server:
   ports:
   - 8080:8080/tcp
   labels:
     io.rancher.container.pull_image: always
     io.rancher.container.start_once: 'true'
-    io.rancher.scheduler.affinity:host_label: label=app
   tty: true
   image: luizkowalski/edge-server
   links:
   - eureka-server:discovery
   stdin_open: true
+  net: host
 hystrix:
   ports:
   - 8090:8090/tcp
   labels:
     io.rancher.container.pull_image: always
     io.rancher.container.start_once: 'true'
-    io.rancher.scheduler.affinity:host_label: label=app
   tty: true
   image: luizkowalski/hystrix
   links:
   - eureka-server:discovery
   stdin_open: true
+  net: host
 contacts:
   labels:
     io.rancher.container.pull_image: always
     io.rancher.container.start_once: 'true'
-    io.rancher.scheduler.affinity:host_label: label=app
   tty: true
   image: luizkowalski/contacts
   links:
   - eureka-server:discovery
   - postgresdb:postgres
   stdin_open: true
+  net: host
