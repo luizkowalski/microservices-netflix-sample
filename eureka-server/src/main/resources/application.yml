@@ -1,11 +1,4 @@
-security:
-  basic:
-    enabled: true
-  user:
-      name: eureka
-      password: admin
-
-server:
+server: 
   port: 8761
 
 eureka:

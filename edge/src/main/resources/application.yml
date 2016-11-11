@@ -12,8 +12,10 @@ ribbon:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://eureka:admin@127.0.0.1:8761/eureka/
+      defaultZone: http://127.0.0.1:8761/eureka/
   instance:
+    metadataMap:
+      instanceId: ${spring.application.name}:${random.int}
     preferIpAddress: false
 
 ---
@@ -24,6 +26,8 @@ spring:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://eureka:admin@discovery:8761/eureka/
+      defaultZone: ${EUREKA_URL}
   instance:
+    metadataMap:
+      instanceId: ${spring.application.name}:${random.int}
     preferIpAddress: false

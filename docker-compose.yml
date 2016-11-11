@@ -17,22 +17,27 @@ contacts:
   links:
     - postgres
     - discovery
-  depends_on:
-    - postgres
-    - discovery
+  # depends_on:
+  #   - postgres
+  #   - discovery
+  mem_limit: 512M
+  cpuset: "1"
+  environment:
+    EUREKA_URL: http://eureka:admin@discovery:8761/eureka
+    DATABASE_URL: jdbc:postgresql://postgres:5432/contacts
 
-edge:
-  build: edge/.
-  ports:
-    - "8080:8080"
-  links:
-    - discovery
-  depends_on:
-    - discovery
+# edge:
+#   build: edge/.
+#   ports:
+#     - "8080:8080"
+#   links:
+#     - discovery
+#   depends_on:
+#     - discovery
 
-hystrix:
-  build: hystrix/.
-  ports:
-    - "8090:8090"
-  links:
-    - discovery
+# hystrix:
+#   build: hystrix/.
+#   ports:
+#     - "8090:8090"
+#   links:
+#     - discovery

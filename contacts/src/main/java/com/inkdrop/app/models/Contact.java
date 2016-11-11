@@ -14,7 +14,7 @@ public class Contact implements Serializable {
 
 	private static final long serialVersionUID = 7998626098964616778L;
 
-	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Id @GeneratedValue(strategy=GenerationType.SEQUENCE)
 	private Long id;
 	private String name;
 	private String phone;

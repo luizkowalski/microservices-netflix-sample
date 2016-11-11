@@ -1,8 +1,5 @@
 spring:
   application:
     name: edge-server
-  cloud:
-    config:
-      failFast: true
 
 server.port: 8080

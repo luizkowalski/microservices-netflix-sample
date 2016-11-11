@@ -1,3 +1,5 @@
+server.port: 8090  
+
 spring:
   application:
     name: hystrix-dashboard
@@ -8,11 +10,9 @@ spring:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://eureka:admin@127.0.0.1:8761/eureka/
+      defaultZone: http://127.0.0.1:8761/eureka/
   instance:
     preferIpAddress: false
-
-server.port: 8090
 
 turbine:
   aggregator:
@@ -27,4 +27,8 @@ spring:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://eureka:admin@discovery:8761/eureka/
+      defaultZone: ${EUREKA_URL}
+  instance:
+    metadataMap:
+      instanceId: ${spring.application.name}:${random.int}
+    preferIpAddress: false

@@ -29,6 +29,7 @@ eureka:
     metadataMap:
       instanceId: ${spring.application.name}:${random.int}
     preferIpAddress: false
+
 ---
 spring:
   profiles: default
@@ -43,12 +44,12 @@ spring:
 
 params:
   datasource:
-    jdbcUrl: jdbc:postgresql://postgres:5432/contacts
+    jdbcUrl: ${DATABASE_URL}
 
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://eureka:admin@discovery:8761/eureka/
+      defaultZone: ${EUREKA_URL}
   instance:
     instanceId: ${spring.application.name}:${random.value}
     preferIpAddress: false
