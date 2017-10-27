@@ -5,9 +5,8 @@
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>1.4.2.RELEASE</version>
+    <version>1.5.8.RELEASE</version>
     <relativePath></relativePath>
-    <!-- lookup parent from repository -->
   </parent>
 
   <groupId>com.inkdrop</groupId>
@@ -28,7 +27,7 @@
       <dependency>
         <groupId>org.springframework.cloud</groupId>
         <artifactId>spring-cloud-dependencies</artifactId>
-        <version>Camden.SR2</version>
+        <version>Dalston.SR4</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -88,27 +87,10 @@
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
+        <configuration>
+          <jvmArguments>--add-modules java.xml.bind,java.xml.ws,java.xml.ws.annotation</jvmArguments>
+        </configuration>
       </plugin>
     </plugins>
   </build>
-
-  <repositories>
-    <repository>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
-      <id>spring-snapshots</id>
-      <name>Spring Snapshots</name>
-      <url>https://repo.spring.io/snapshot</url>
-    </repository>
-    <repository>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-      <id>spring-milestones</id>
-      <name>Spring Milestones</name>
-      <url>https://repo.spring.io/libs-milestone</url>
-    </repository>
-  </repositories>
-
 </project>

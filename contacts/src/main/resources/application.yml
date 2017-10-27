@@ -5,7 +5,7 @@ spring:
 
 server:
   compression.enabled: true
-  port: 0
+  port: 8080
 
 spring.jpa:
   show-sql: true
@@ -45,6 +45,9 @@ spring:
 params:
   datasource:
     jdbcUrl: ${DATABASE_URL}
+
+security.basic.enabled: false
+management.security.enabled: false
 
 eureka:
   client:

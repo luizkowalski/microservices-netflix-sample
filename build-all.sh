@@ -4,7 +4,7 @@ set -e
 
 cd eureka-server; mvn clean package -DskipTests=true; cd -
 cd contacts; mvn clean package -DskipTests=true; cd -
-cd edge; mvn clean package -DskipTests=true; cd -
+# cd edge; mvn clean package -DskipTests=true; cd -
 cd hystrix; mvn clean package -DskipTests=true; cd -
 # cd api; mvn clean package -DskipTests=true; cd -
 

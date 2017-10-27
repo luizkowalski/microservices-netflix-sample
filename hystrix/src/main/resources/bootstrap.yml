@@ -1,4 +1,4 @@
-server.port: 8090  
+server.port: 8090
 
 spring:
   application:
@@ -17,7 +17,7 @@ eureka:
 turbine:
   aggregator:
     clusterConfig: CONTACTS-SERVICE
-  appConfig: CONTACTS-SERVICE
+  appConfig: contacts-service
 
 ---
 

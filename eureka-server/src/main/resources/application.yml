@@ -1,4 +1,4 @@
-server: 
+server:
   port: 8761
 
 eureka:
@@ -23,7 +23,7 @@ eureka:
   numberRegistrySyncRetries: 1
   instance:
     preferIpAddress: false
-    hostname: discovery
+    hostname: eureka-server
   client:
     registerWithEureka: false
     fetchRegistry: false
