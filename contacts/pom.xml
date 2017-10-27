@@ -76,6 +76,10 @@
        <artifactId>spring-boot-starter-actuator</artifactId>
     </dependency>
     <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+    </dependency>
+    <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-test</artifactId>
       <scope>test</scope>
@@ -88,7 +92,7 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
         <configuration>
-          <jvmArguments>--add-modules java.xml.bind,java.xml.ws,java.xml.ws.annotation</jvmArguments>
+          <!--<jvmArguments>&#45;&#45;add-modules java.xml.bind,java.xml.ws,java.xml.ws.annotation</jvmArguments>-->
         </configuration>
       </plugin>
     </plugins>
