@@ -55,4 +55,4 @@ eureka:
       defaultZone: ${EUREKA_URL}
   instance:
     instanceId: ${spring.application.name}:${random.value}
-    preferIpAddress: false
+    preferIpAddress: true

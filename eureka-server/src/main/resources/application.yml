@@ -22,7 +22,7 @@ spring:
 eureka:
   numberRegistrySyncRetries: 1
   instance:
-    preferIpAddress: false
+    preferIpAddress: true
     hostname: eureka-server
   client:
     registerWithEureka: false
