@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: eureka
+  name: eureka
+  namespace: default
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: eureka
+    spec:
+      containers:
+        -
+          image: luizkowalski/eureka-server
+          name: eureka
+          ports:
+            -
+              containerPort: 8761
